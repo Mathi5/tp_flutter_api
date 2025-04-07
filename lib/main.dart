@@ -17,7 +17,24 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Fake Store App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF6200EE),
+            brightness: Brightness.light,
+            secondary: const Color(0xFF49DE3F),
+          ),
+          cardTheme: CardTheme(
+            elevation: 2,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          ),
+          chipTheme: ChipThemeData(
+            selectedColor: const Color(0xFF6200EE).withOpacity(0.2),
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF6200EE),
+            foregroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+          ),
           useMaterial3: true,
         ),
         home: const ProductListScreen(),

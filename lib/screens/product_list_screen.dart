@@ -50,18 +50,25 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   Widget _buildCategoryFilter(ProductViewModel viewModel) {
     return Container(
-      height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      height: 54,
+      margin: const EdgeInsets.only(top: 16, bottom: 10),
       child: ListView(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           // Option "Tous les produits"
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: FilterChip(
-              label: const Text('Tous'),
+              label: const Text(
+                'Tous',
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
               selected: viewModel.selectedCategory == null,
+              showCheckmark: false,
+              avatar: viewModel.selectedCategory == null
+                ? const Icon(Icons.all_inclusive, size: 16)
+                : null,
               onSelected: (selected) {
                 if (selected) {
                   viewModel.filterByCategory(null);
@@ -71,11 +78,20 @@ class _ProductListScreenState extends State<ProductListScreen> {
           ),
           // Chips pour chaque catégorie
           ...viewModel.categories.map(
-                (category) => Padding(
+            (category) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: FilterChip(
-                label: Text(category),
+                label: Text(
+                  category,
+                  style: TextStyle(
+                    fontWeight: viewModel.selectedCategory == category
+                        ? FontWeight.w500
+                        : FontWeight.normal,
+                  ),
+                ),
                 selected: viewModel.selectedCategory == category,
+                showCheckmark: false,
+                backgroundColor: Colors.grey[100],
                 onSelected: (selected) {
                   if (selected) {
                     viewModel.filterByCategory(category);
@@ -132,7 +148,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       product.image,
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.image_not_supported),
+                        const Icon(Icons.image_not_supported),
                     ),
                   ),
                 ),
