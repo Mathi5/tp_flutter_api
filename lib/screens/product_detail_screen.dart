@@ -43,6 +43,12 @@ class ProductDetailScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 10),
+
+            Chip(
+              label: Text(product.category),
+              backgroundColor: Colors.blue.shade100,
+            ),
             const SizedBox(height: 20),
 
             const Text(
